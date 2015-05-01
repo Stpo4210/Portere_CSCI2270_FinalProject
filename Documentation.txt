@@ -1,0 +1,80 @@
+Function: void player::printPouch();
+	Description- Prints out how many gems you have, which gems you have, and how many markers you have.
+	Example- player* one;
+		one->printPouch();
+	Precondition - pouch has a gem count set to 0, a marker count that's not set to anything, and an empty array of strings with a length of 3.
+	Postcondition - pouch will have a gem count of 3, a maximum marker count of 6, and an array of strings: "Red Gem", "Green Gem", and "Blue Gem" and will print out all of these things.
+
+Function: void player::addGem(std::string, pouch* bag);
+	Description- takes in the gem thats being added to the bag, checks for the next empty slot and puts the gem into it.
+	Example- player* one;
+		pouch* bag;
+		player->addGem("Green Gem", bag);
+	Precondition - takes a string, determines whether its a green gem, a red gem, or a blue gem, adds it to a spot in the gems array inside of the pouch* bag that's empty.
+	Postcondition - addGem will insert the string of whatever "gem" it is into the array inside of the pouch* bag.
+
+Function: bool pouch::hasAllGems();
+	Description- returns true or false as to whether the player's bag contains all the gems by going through and checking if the array gems has any empty slots.
+	Example- player* one;
+		bool x = one->bag->hasAllGems();
+	Precondition - looks at the bag the player has, hasGems is a bool set to true. Goes through the gems array inside of pouch and determines whether theres empty space. If there is, it sets the bool to 			false.
+	Postcondition - will either return true or false depending on whether the array gems[] is full or not.
+
+*note*
+-all movement functions check for items in nodes, and if it exists, it puts them into the respectful position and clears the item from the node's inventory;
+
+Function: void player::moveForward();
+	Description- moves the player forward if possible. If not, return a cout statement.
+	Example- player* one;
+		one->moveForward();
+	Precondition - player is on their node* position, and will evaluate whether the player can move or not. Will also check for treasures on the node* next.
+	Postcondition - player will now be on the node* next of node* position if node* next != NULL. Adds whatever treasure to their respectful place if it's on the node* position, and removes the item.
+
+Function: void player::moveBackward();
+	Description- moves the player backward  if possible. If not, return a cout statement.
+	Example- player* one;
+		one->moveBackward();
+	Precondition - player is on their node* position, and will evaluate whether the player can move or not. Will also check for treasures on the node* prev.
+	Postcondition - player will now be on the node* prev of node* position if node* prev != NULL. Adds whatever treasure to their respectful place if it's on the node* position, and removes the item.
+
+Function: void player::moveLeft();
+	Description- moves the player left if possible. If not, return a cout statement.
+	Example- player* one;
+		one->moveLeft();
+	Precondition - player is on their node* position, and will evaluate whether the player can move or not. Will also check for treasures on the node* left.
+	Postcondition - player will now be on the node* left of node* position if node* left != NULL. Adds whatever treasure to their respectful place if it's on the node* position, and removes the item.
+
+Function: void player::moveRight();
+	Description- moves the player right if possible. If not, return a cout statement.
+	Example- player* one;
+		one->moveRight();
+	Precondition - player is on their node* position, and will evaluate whether the player can move or not. Will also check for treasures on the node* right.
+	Postcondition - player will now be on the node* right of node* position if node* right != NULL. Adds whatever treasure to their respectful place if it's on the node* position, and removes the item.
+
+Function: void player::placeMarker();
+	Description- places a marker on the player's position on the graph which can be written on and when walked over, shows the text the marker has.
+	Example- player* one;
+		one->placeMarker();
+	Precondition - the bool marker on node* position is set to false initially. String markerTxt is empty.
+	Postcondition - the bool maker on node* position is set to true, and string markerTxt is then filled with text that the user inputs. When walked over, will cout the text input. 
+
+Function: void player::printInventory();
+	Description- prints out gems, weapon, marker count, and gem count.
+	Example- player* one;
+		one->printInventory();
+	Precondition - the inventory includes the string weapon which is empty, and the pouch* bag with the array gems[] and the gem count and the marker count.
+	Postcondition - prints out the player name, string weapon, calls the function printPouch, which then prints gems[], the gem count, and the marker count.
+
+Function: void Labyrinth::buildLabyrinth();
+	Description- builds the labyrinth by connects all nodes to their respectful places. Also establishes the fixed locations of the gems, dragon, and markers. Look for additional file for a map of the 			nodes.
+	Example- Labyrinth map;
+		map.buildLabyrinth();
+	Precondition - all nodes are uninitialized until buildLabyrinth() is called. 
+	Postcondition - all nodes are initialized and set to their respectful places and contain their respectful string treasure. This is where node* start is set to node* create a.k.a. the starting node.
+
+Function: node* Labyrinth::returnStartingPos();
+	Description - returns the private node* start which is the position you begin and end on.
+	Example- Labyrinth map;
+		node* x = map.returnStartingPos();
+	Precondition - start is set to NULL before buildLabyrinth() is called.
+	Postcondition - returns the node* start which is equal to the node*create after the labyrinth has been built. 
