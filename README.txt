@@ -10,6 +10,6 @@ System Requirements: The program is designed for Linux and uses the g++ compiler
 
 Group Members: Steven Porter. The Lone Wolf.
 
-Contributors: None so far, will edit or commit as time passes. 
+Contributors: rnarkus
 
 Open issues/bugs: Shouldn't be any bugs.
