@@ -14,6 +14,10 @@ struct node{
     std::string treasure;
     std::string monster;
     bool monsterOn = false;
+    
+    node* redGem;  //node pointers added for thief to be able to send stolen gem back to original loaction in maze 
+    node* greenGem;
+    node* blueGem;
 
     node(){};
 };
@@ -37,6 +41,7 @@ struct player{
     std::string weapon;
     player(){};
     void addGem(std::string, pouch* bag);
+    void stealGem(pouch* bag);
     void moveForward();
     void moveBackward();
     void moveLeft();
@@ -57,6 +62,7 @@ class Labyrinth
     public:
         void buildLabyrinth();
         node* returnStartingPos();
+    
     private:
         node* start;
 };
