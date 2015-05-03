@@ -70,6 +70,11 @@ int main(){
             if(response == "p"){
                 running = false;
             }
+            if(one->position->point == "Thief"){  //player is on position of the thief
+                cout << "You are about to be mugged by a thief!" << endl;
+                one->stealGem(one->bag); //calls new method to steal a gem from player
+            }
+            
             if(one->position == maze.returnStartingPos() && one->position->monsterOn==true){ //checks to see if you're on the start point and the dragon is turned on
                 if(one->weapon == "Butter Knife"){ //if you have the butter knife
                     cout<<"Are you ready to face the dra";
