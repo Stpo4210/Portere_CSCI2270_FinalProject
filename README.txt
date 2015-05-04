@@ -10,6 +10,9 @@ System Requirements: The program is designed for Linux and uses the g++ compiler
 
 Group Members: Steven Porter. The Lone Wolf.
 
-Contributors: rnarkus
+Contributors: rnarkus, jordanDeitsch, D-Kleck*
 
 Open issues/bugs: Shouldn't be any bugs.
+
+*note* D-Kleck offered a contribution which looked applicable, but it shows that the entire files are additions.
+  I'm unaware of what will happen if I merge the pull request with files that have different names than mine. 
