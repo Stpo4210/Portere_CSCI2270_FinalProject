@@ -80,6 +80,10 @@ void Labyrinth::buildLabyrinth(){ //assigns all nodes to their respective positi
     createS->point = "S";
     node* last_pos = new node();
     last_pos->point = "Last Position";
+    
+    node* createThief = new node();   //creating a thief node
+    createThief->point = "Thief";
+    
     create->next = create1;
     create1->right = create2;
     create1->left = create3;
@@ -141,6 +145,10 @@ void Labyrinth::buildLabyrinth(){ //assigns all nodes to their respective positi
     last_pos->prev = createR;
     createR->prev = createS;
     createS->next = createR;
+    
+    createThief->left = createI;   //adding the thief's location to the labyrinth
+    createI->right = createThief;
+    
     //treasure placement
     createB->treasure = "Green Gem";
     create7->treasure = "Blue Gem";
@@ -152,6 +160,11 @@ void Labyrinth::buildLabyrinth(){ //assigns all nodes to their respective positi
     createN->treasure = "Marker";
     create9->treasure = "Marker";
     createR->treasure = "Marker";
+    
+    createThief->greenGem = createB;
+    createThief->blueGem = create7;
+    createThief->redGem = createF;
+    
     //create the labyrinth start point
     start = create;
     availableMoves(start);
@@ -220,7 +233,6 @@ void player::addGem(string gemType, pouch* bag){//adds the gem that's been found
             i++;
     }
 }
-
 void player::moveBackward(){//movement backward
     if(position->prev != NULL){
         position = position->prev;
@@ -387,3 +399,34 @@ void player::moveRight(){//movement right
  cout<<"Weapon: "<<weapon<<endl;
  bag->printPouch();
  }
+
+void player::stealGem(pouch* bag){//steals a gem from your "pouch"
+    int i = 2;
+    bool stolen = false;
+    while(i>-1 && stolen == false){  //steals gem from the end of the pouch array
+        if(bag->gems[i].empty() == false){
+            stolen = true;
+            bag->gemCount--;
+            if(bag->gems[i] == "Red Gem"){
+                position->redGem->treasure = "Red Gem";
+                bag->gems[i] = "";
+                cout << "The Red Gem was stolen and put back in the labyrinth!" << endl;
+            }
+            if(bag->gems[i] == "Green Gem"){
+                position->greenGem->treasure = "Green Gem";
+                bag->gems[i] = "";
+                cout << "The Green Gem was stolen and put back in the labyrinth!" << endl;
+            }
+            if(bag->gems[i] == "Blue Gem"){
+                position->blueGem->treasure = "Blue Gem";
+                bag->gems[i] = "";
+                cout << "The Blue Gem was stolen and put back in the labyrinth!" << endl;
+            }
+        }
+        else
+            i--;
+    }
+    if(stolen == false){
+        cout << "You were too poor to be robbed. Congratulations...?" << endl;
+    }
+}
